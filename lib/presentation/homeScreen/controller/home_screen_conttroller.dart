@@ -12,6 +12,7 @@ class HomeScreenController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     await weatherApiCalling();
+    update();
   }
 
   //function for api call
@@ -28,7 +29,8 @@ class HomeScreenController extends GetxController {
       if (response.statusCode == 200) {
         log('the response is ${response.body}');
         var jsonData = jsonDecode(response.body);
-        weatherModel.value = WeatherModel.fromJson(jsonData['request']);
+        weatherModel.value = WeatherModel.fromJson(jsonData);
+        update();
 
       }
     } catch (e) {

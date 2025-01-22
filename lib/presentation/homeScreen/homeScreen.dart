@@ -18,20 +18,20 @@ class Homescreen extends StatelessWidget {
           ),
           body:
 
-          controller.loading.value==false?
+          controller.loading.value==true? Center(
+            child: CircularProgressIndicator(),
+          ):
           ListView.builder(
-           // itemCount: controller.weatherModel!.length,
+            itemCount: 5,
             itemBuilder:(context, index) {
-
             return Card(
               elevation: 2,
               child: ListTile(
-                title:Text('${controller.weatherModel.subject}') ,
+                title:Text('${controller.weatherModel.value.location?.name}') ,
+                subtitle: Text('${controller.weatherModel.value.current?.temperature}'),
               ),
             );
-          },) : Center(
-            child: CircularProgressIndicator(),
-          )
+          },)
         );
       }
     );
